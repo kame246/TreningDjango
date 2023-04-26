@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista postów</title>
+    <link href="{% static 'news/css/news.css' %}" rel="stylesheet" />
+</head>
+<body>
+<h3>Tutaj będzie lista postów...</h3>
+<p>Ilość postów: {{ cnt }}.</p>
+{% for post in posts %}
+    <p class="post-in-list">{{ post.title }}</p>
+{% endfor %}
+<p>Ta strona została stworzona przez {{ imie }}.</p>
+</body>
+</html>

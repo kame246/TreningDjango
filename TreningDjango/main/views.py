@@ -3,7 +3,7 @@ from django.shortcuts import HttpResponse
 # Widok to funkcja, która przyjmuje HttpRequest i zwraca HttpResponse
 
 def hello(request):
-    return HttpResponse('Hello world!')
+    return HttpResponse('Hello world! <b>Ala ma kota</b>')
 
 # 127.0.0.1:8000/1/2/3/
 def params1(request, a, b, c):
