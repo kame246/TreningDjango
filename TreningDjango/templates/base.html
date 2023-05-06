@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/common.css' %}" rel="stylesheet" />
+    {% block css %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<header class="w3-container w3-teal"><h1>{% block header %}{% endblock %}</h1></header>
+{% block content %}{% endblock %}
+<footer><p>{% block footer %}{% endblock %}</p></footer>
+</body>
+</html>

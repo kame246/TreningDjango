@@ -56,7 +56,7 @@ ROOT_URLCONF = 'TreningDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ BASE_DIR / 'templates/' ],
         'APP_DIRS': True, # Dzięki temu Django szuka szablonów w katalogu 'templates' każdej aplikacji
         'OPTIONS': {
             'context_processors': [
@@ -118,6 +118,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Django będzie również uwzględniać następujące ścieżki w poszukiwaniu
+# plików statycznych - nie tylko te w folderach aplikacji
+STATICFILES_DIRS = [
+    BASE_DIR / 'static/',
+]
 
 # Tutaj można skopiować pliki statyczne za pomocą komendy
 # python manage.py collectstatic, aby były dostępne dla front serwera tj. NGIX, Apache,
