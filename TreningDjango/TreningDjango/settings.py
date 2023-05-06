@@ -119,6 +119,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Tutaj można skopiować pliki statyczne za pomocą komendy
+# python manage.py collectstatic, aby były dostępne dla front serwera tj. NGIX, Apache,
+# które szybko serwują statyczną treść, a Django powinien serwować tylko dynamiczną.
+#STATIC_ROOT = BASE_DIR / 'pliki_statyczne/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

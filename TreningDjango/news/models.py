@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -15,6 +16,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     category = models.CharField(choices=CATEGORIES, max_length=30)
     created = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('news:detail', args=[self.id])
 
     def __str__(self):
         return f'Post: {self.title}'

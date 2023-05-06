@@ -10,7 +10,15 @@
 <h3>Tutaj będzie lista postów...</h3>
 <p>Ilość postów: {{ cnt }}.</p>
 {% for post in posts %}
-    <p class="post-in-list">{{ post.title }}</p>
+    <div class="post-in-list">{{ post.title }}
+    <details>
+        <p>
+        <summary>Czytaj</summary>
+        {{ post.content|truncatechars:20 }}
+        <a href="{{ post.get_absolute_url }}">Czytaj więcej...</a>
+        </p>
+    </details>
+    </div>
 {% endfor %}
 <p>Ta strona została stworzona przez {{ imie }}.</p>
 </body>
