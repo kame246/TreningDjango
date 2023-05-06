@@ -11,6 +11,13 @@
 </head>
 <body>
 <header class="w3-container w3-teal"><h1>{% block header %}{% endblock %}</h1></header>
+<nav>
+    <ul>
+        <li><a class="w3-button w3-red" href="{% url 'main:hello' %}">Home</a></li>
+        <li><a class="w3-button w3-green" href="{% url 'news:list' %}">Posty</a></li>
+        <li><a class="w3-button w3-yellow" href="{% url 'main:author' %}">O autorze</a></li>
+    </ul>
+</nav>
 {% block content %}{% endblock %}
 <footer><p>{% block footer %}{% endblock %}</p></footer>
 </body>

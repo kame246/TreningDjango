@@ -1,9 +1,19 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
+from django.views import View
 
-# Widok to funkcja, która przyjmuje HttpRequest i zwraca HttpResponse
+class CatView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Jestem kotem, miau...')
 
-def hello(request):
-    return HttpResponse('Hello world! <b>Ala ma kota</b>')
+class HelloView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/hello.html')
+
+
+class AuthorView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/author.html')
+
 
 # 127.0.0.1:8000/1/2/3/
 def params1(request, a, b, c):

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}O autorze...{% endblock %}
+{% block header %}O autorze...{% endblock %}
+{% block content %}
+<p>Autorem strony jest Bartłomiej Olszak-Mundzia.</p>
+<p>Mój adres e-mail to <address>bartlomiej@olszak-mundzia.pl</address></p>
+<p>
+    <button onclick="alert('Witaj serdecznie {{ request.user }}!')">Przywitaj się</button>
+</p>
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

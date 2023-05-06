@@ -1,3 +1,9 @@
 body {
     background-color: pink;
 }
+
+ul > li {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+}

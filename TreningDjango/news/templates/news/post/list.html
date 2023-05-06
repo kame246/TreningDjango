@@ -16,5 +16,12 @@
     </details>
     </div>
 {% endfor %}
+{% if posts.has_previous %}
+    <a href="?page={{ posts.previous_page_number }}">Poprzednia</a>
+{% endif %}
+Strona <span class="w3-badge w3-red">{{ posts.number }}</span> z {{ posts.paginator.num_pages }}
+{% if posts.has_next %}
+    <a href="?page={{ posts.next_page_number }}">Następna</a>
+{% endif %}
 {% endblock content %}
 {% block footer %}Ta strona została stworzona przez {{ imie }}.{% endblock %}
