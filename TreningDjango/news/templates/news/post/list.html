@@ -4,7 +4,9 @@
 {% block header %}Lista postów...{% endblock %}
 {% block css %}<link href="{% static 'news/css/news.css' %}" rel="stylesheet" />{% endblock %}
 {% block content %}
+
 <p>Ilość postów: {{ cnt }}.</p>
+
 {% for post in posts %}
     <div class="post-in-list">{{ post.title }}
     <details>
@@ -16,12 +18,12 @@
     </details>
     </div>
 {% endfor %}
-{% if posts.has_previous %}
-    <a href="?page={{ posts.previous_page_number }}">Poprzednia</a>
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Poprzednia</a>
 {% endif %}
-Strona <span class="w3-badge w3-red">{{ posts.number }}</span> z {{ posts.paginator.num_pages }}
-{% if posts.has_next %}
-    <a href="?page={{ posts.next_page_number }}">Następna</a>
+Strona <span class="w3-badge w3-red">{{ page_obj.number }}</span> z {{ page_obj.paginator.num_pages }}
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Następna</a>
 {% endif %}
 {% endblock content %}
 {% block footer %}Ta strona została stworzona przez {{ imie }}.{% endblock %}

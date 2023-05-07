@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Strona domowa{% endblock %}
 {% block header %}Strona domowa{% endblock %}
-{% block content %}<p>Witaj na stronie głównej</p>{% endblock %}
+{% block content %}
+<p>Witaj na stronie głównej</p>
+<p>Twój szczęśliwy numerek to <span class="w3-badge w3-green">{{ lucky_number }}</span>.</p>
+{% endblock %}
 {% block footer %}Moja pierwsza strona{% endblock %}

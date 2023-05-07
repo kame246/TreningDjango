@@ -1,18 +1,30 @@
 from django.shortcuts import HttpResponse, render
 from django.views import View
+from django.views.generic import TemplateView
+import random
+
+class CatTemplateView(TemplateView):
+    template_name = 'main/cat.html'
+    extra_context = {'name':'Blanunia'}
+
 
 class CatView(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse('Jestem kotem, miau...')
 
-class HelloView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'main/hello.html')
+
+class HelloView(TemplateView):
+    template_name = 'main/hello.html'
+    # extra_context = {'lucky_number': random.randint(1, 32)}
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['lucky_number'] = random.randint(1, 32)
+        return context
 
 
-class AuthorView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'main/author.html')
+
+class AuthorView(TemplateView):
+    template_name = 'main/author.html'
 
 
 # 127.0.0.1:8000/1/2/3/
