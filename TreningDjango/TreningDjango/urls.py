@@ -24,5 +24,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', include('news.urls')),
+    path('survey/', include('survey.urls')),
     path('', include('main.urls')) # Załączamy plik urls.py z aplikacji main, gdy nie ma niczego po adresie 127.0.0.1:8000/
 ]

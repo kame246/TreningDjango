@@ -1,7 +1,20 @@
 from django.shortcuts import HttpResponse, render
 from django.views import View
 from django.views.generic import TemplateView
+from .forms import PythonistForm
 import random
+
+
+def send_basic_info(request):
+    cd = None
+    # Czy użytkownik chce zobaczyć pusty formularz do wypełnienia? Tak, jeśli metoda GET
+    if request.method == 'GET':
+        form = PythonistForm()
+    else: # Metoda POST, więc użytkownik przesyła dane z wypełnienego formularza
+        form = PythonistForm(request.POST) # Tworzymy formularz z przesłanymi danymi
+        if form.is_valid():
+            cd = form.cleaned_data
+    return render(request, 'main/basic_info.html', {'form':form, 'data':cd})
 
 class CatTemplateView(TemplateView):
     template_name = 'main/cat.html'

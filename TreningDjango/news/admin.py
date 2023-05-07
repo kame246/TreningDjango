@@ -24,7 +24,7 @@ class PostAdmin(admin.ModelAdmin):
             post.content += footer_text
             post.save()
 
-    actions = ('cleanup_content', add_footer)
+    actions = ('cleanup_content', 'add_footer')
     list_display = ('title', 'author', 'category', 'created', 'created_year',
                     'short_content')
     search_fields = ('title', 'content')

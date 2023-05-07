@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Ankieta{% endblock %}
+{% block header %}Ankieta{% endblock %}
+{% block content %}
+<p>Ankieta w szablonie</p>
+{% if data %}
+    <p>Dziękuję za przesłanie informacji</p>
+{% else %}
+    <form method="post">
+        <table>{{ form }}</table>
+        {% csrf_token %}
+        <input type="submit" value="Wyślij ankietę" />
+    </form>
+{% endif %}
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

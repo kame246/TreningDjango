@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'survey',
+    # 'survey.apps.SurveyConfig',
     # 'news', # Piewrszy sposób
     'news.apps.NewsConfig' # Drugi sposób
 ]

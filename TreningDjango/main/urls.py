@@ -13,5 +13,6 @@ urlpatterns = [
     path('author/', views.AuthorView.as_view(), name='author'),
     path('params1/<int:a>/<int:b>/<int:c>/', views.params1), # 127.0.0.1:8000/params1/1/2/3/
     path('params2/', views.params2), # 127.0.0.1:8000/params2?a=1&b=2&c=3
-    path('bmi/', views.bmi)
+    path('bmi/', views.bmi),
+    path('basic_info/', views.send_basic_info, name='send_basic_info'),
 ]
