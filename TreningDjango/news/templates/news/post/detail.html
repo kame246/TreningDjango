@@ -6,6 +6,20 @@
 {% block content %}
     <p>{{post.content|linebreaks}}</p>
     <p><a class="w3-button w3-teal" href="{% url 'news:list' %}">Wróć do listy postów</a></p>
+    {% for comment in comments %}
+        <p>Komentarz dodany przez {{ comment.nick }} dn. {{ comment.created }}<br />
+            {{ comment.content|linebreaks }}
+        </p>
+    {% empty %}
+        <p>Niestety brak komentarzy</p>
+    {% endfor %}
+
+    <h3>Dodaj nowy komentarz</h3>
+    <form method="post">
+        <table>{{ form }}</table>
+        {% csrf_token %}
+        <input type="submit" value="Dodaj komentarz" />
+    </form>
 {% endblock %}
 {% block footer %}
 Post utworzony {{post.created}} przez {{post.author}}

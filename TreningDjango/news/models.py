@@ -22,3 +22,17 @@ class Post(models.Model):
 
     def __str__(self):
         return f'Post: {self.title}'
+
+
+class Comment(models.Model):
+    nick = models.CharField(max_length=30)
+    created = models.DateTimeField(auto_now_add=True)
+    content = models.TextField()
+    email = models.EmailField()
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['created']
+
+    def __str__(self):
+        return f'Komentarz {{ self.content[:10] }}... dodany przez {self.nick} dla postu'

@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
+from .forms import CommentForm
 
 # class NewsDetail(View):
 #     def get(self, request, *args, **kwargs):
@@ -18,9 +19,21 @@ from django.views.generic import TemplateView, ListView, DetailView
 #         context['post'] = get_object_or_404(Post, id=kwargs['id'])
 #         return context
 
-class NewsDetail(DetailView):
-    template_name = 'news/post/detail.html'
-    model = Post
+def news_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    comments = post.comments.all()
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False) # Nie chcę zapisać w bazie danych, bo ustawiam jeszcze post
+        comment.post = post
+        comment.save()
+        return HttpResponseRedirect(request.path)
+    return render(request, 'news/post/detail.html', {'post': post, 'form': form,
+                                                     'comments': comments})
+
+# class NewsDetail(DetailView):
+#     template_name = 'news/post/detail.html'
+#     model = Post
 
 # class NewsList(View):
 #     def get(self, request, *args, **kwargs):
