@@ -3,6 +3,8 @@ from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CommentForm
 
 # class NewsDetail(View):
@@ -18,7 +20,7 @@ from .forms import CommentForm
 #         context = super().get_context_data(**kwargs)
 #         context['post'] = get_object_or_404(Post, id=kwargs['id'])
 #         return context
-
+@login_required
 def news_detail(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comments.all()
@@ -73,7 +75,7 @@ def news_detail(request, id):
 #         return context
 
 
-class NewsList(ListView):
+class NewsList(LoginRequiredMixin, ListView): # Ważne, by LoginRequiredMixin był jako pierwszy
     template_name = 'news/post/list.html'
     extra_context = {'cnt':Post.objects.count(), 'imie':'Bartek'}
     paginate_by = 3 # Szablon używa zmiennej w URL o nazwie 'page', np. '?page=1'

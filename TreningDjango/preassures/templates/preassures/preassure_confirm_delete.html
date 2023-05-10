@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Usunięcie pomiaru{% endblock %}
+{% block header %}Usunięcie pomiaru{% endblock %}
+{% block content %}
+<p>Czy na pewno chcesz usunąć ten wpis?</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Usuń" />
+</form>
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

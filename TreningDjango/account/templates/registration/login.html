@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Logowanie{% endblock %}
+{% block header %}Logowanie{% endblock %}
+{% block content %}
+
+<form method="post">
+    <table>{{ form }}</table>
+    {% csrf_token %}
+    {# Wartość next jest użyta, by przekierować nas do konkretnej strony po udanym zalogowaniu, np. #}
+    {# np. http://127.0.0.1:8000/account/login/?next=/author/ przekieruje do strony o autorze zamiast do strony ustawionej w LOGIN_REDIRECT_URL #}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <input type="submit" value="Zaloguj się" />
+</form>
+
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

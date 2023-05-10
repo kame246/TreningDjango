@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'preassures.apps.PreassuresConfig',
     'main',
     'survey',
     # 'survey.apps.SurveyConfig',
@@ -136,3 +138,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'main:hello' # Przekieruj do tej strony po udanym zalogowaniu
+LOGIN_URL = 'login' # Niech Django weźmie te strone z account/urls.py, jeśli chce pokazać formularz logowania

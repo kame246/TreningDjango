@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ciśnienia tętnicze{% endblock %}
+{% block header %}Ciśnienia tętnicze{% endblock %}
+{% block content %}
+<p>To aplikacja do pomiaru ciśnień tętniczych</p>
+<p>Umożliwi zapisywanie pomiarów i oglądanie statystyk.</p>
+<img src="{% static 'preassures/img/ciśnieniomierz.png' %}" />
+<p>Możesz przejść do aplikacji klikając na ten przycisk
+<a class ="w3-button w3-red" href="{% url 'preassures:list' %}">pomiary ciśnień</a></p>
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

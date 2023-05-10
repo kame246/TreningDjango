@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pomiar ciśnienia{% endblock %}
+{% block header %}Pomiar ciśnienia{% endblock %}
+{% block content %}
+
+<p>Pomiar ciśnienia</p>
+<table class="w3-table w3-strip w3-border">
+    <tr>
+        <td>{{ object.time }}</td>
+        <td>{{ object.sys }}</td>
+        <td>{{ object.dia }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

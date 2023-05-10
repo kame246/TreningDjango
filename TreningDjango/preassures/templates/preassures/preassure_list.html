@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Lista ciśnień{% endblock %}
+{% block header %}Lista ciśnień{% endblock %}
+{% block content %}
+
+<table class="w3-table w3-striped w3-border">
+    <tr>
+        <td>Czas</td>
+        <td>Sys</td>
+        <td>Dia</td>
+        <td>Operacje</td>
+    </tr>
+{% for preassure in object_list %}
+    <tr>
+        <td>{{ preassure.time }}</td>
+        <td>{{ preassure.sys }}</td>
+        <td>{{ preassure.dia }}</td>
+        <td>
+            <a href="{% url 'preassures:update' preassure.pk %}">Aktualizuj</a>|
+            <a href="{% url 'preassures:delete' preassure.pk %}">Usuń</a>|
+            <a href="{% url 'preassures:detail' preassure.pk %}">Pokaż</a>
+        </td>
+    </tr>
+{% empty %}
+    <tr><td colspan="4">Brak pomiarów</td></tr>
+{% endfor %}
+</table>
+<p><a href="{% url 'preassures:create' %}">Dodaj nowy pomiar</a></p>
+
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

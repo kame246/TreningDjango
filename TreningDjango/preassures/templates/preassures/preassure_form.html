@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dodanie/aktualizacja pomiaru{% endblock %}
+{% block header %}Dodanie/aktualizacja pomiaru{% endblock %}
+{% block content %}
+
+{# Ten szablon służy do dodawania lub aktualizacji pomiaru #}
+<form method="post">
+    <table>{{ form }}</table>
+    {% csrf_token %}
+    <input type="submit" value="Dodaj/Aktualizuj" />
+</form>
+
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}
