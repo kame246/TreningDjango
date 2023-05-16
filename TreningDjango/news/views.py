@@ -3,24 +3,12 @@ from .models import Post
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .forms import CommentForm
 
-# class NewsDetail(View):
-#     def get(self, request, *args, **kwargs):
-#         # print(f'{args=} {kwargs=}')
-#         id = kwargs['id']
-#         post = get_object_or_404(Post, id=id)
-#         return render(request, 'news/post/detail.html', {'post':post})
-
-# class NewsDetail(TemplateView):
-#     template_name = 'news/post/detail.html'
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['post'] = get_object_or_404(Post, id=kwargs['id'])
-#         return context
-@login_required
+# @login_required
+@permission_required(perm='news.view_post')
 def news_detail(request, id):
     post = get_object_or_404(Post, id=id)
     comments = post.comments.all()
@@ -32,6 +20,17 @@ def news_detail(request, id):
         return HttpResponseRedirect(request.path)
     return render(request, 'news/post/detail.html', {'post': post, 'form': form,
                                                      'comments': comments})
+
+class NewsList(PermissionRequiredMixin, ListView): # Ważne, by LoginRequiredMixin był jako pierwszy
+    template_name = 'news/post/list.html'
+    extra_context = {'cnt':Post.objects.count(), 'imie':'Bartek'}
+    paginate_by = 3 # Szablon używa zmiennej w URL o nazwie 'page', np. '?page=1'
+    # W szablonie będzie obiekt paginacji pod nazwą 'page_obj'
+    model = Post
+    context_object_name = 'posts' # Bez tego lista postów byłaby przekazana do szablonu pod nazwą 'object_list'
+    permission_required = 'news.view_post'
+
+
 
 # class NewsDetail(DetailView):
 #     template_name = 'news/post/detail.html'
@@ -75,10 +74,16 @@ def news_detail(request, id):
 #         return context
 
 
-class NewsList(LoginRequiredMixin, ListView): # Ważne, by LoginRequiredMixin był jako pierwszy
-    template_name = 'news/post/list.html'
-    extra_context = {'cnt':Post.objects.count(), 'imie':'Bartek'}
-    paginate_by = 3 # Szablon używa zmiennej w URL o nazwie 'page', np. '?page=1'
-    # W szablonie będzie obiekt paginacji pod nazwą 'page_obj'
-    model = Post
-    context_object_name = 'posts' # Bez tego lista postów byłaby przekazana do szablonu pod nazwą 'object_list'
+# class NewsDetail(View):
+#     def get(self, request, *args, **kwargs):
+#         # print(f'{args=} {kwargs=}')
+#         id = kwargs['id']
+#         post = get_object_or_404(Post, id=id)
+#         return render(request, 'news/post/detail.html', {'post':post})
+
+# class NewsDetail(TemplateView):
+#     template_name = 'news/post/detail.html'
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['post'] = get_object_or_404(Post, id=kwargs['id'])
+#         return context

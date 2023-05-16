@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Rejestracja{% endblock %}
+{% block header %}Rejestracja{% endblock %}
+{% block content %}
+
+<form method="post">
+    <table>{{ form }}</table>
+    {% csrf_token %}
+    <input type="submit" value="Zarejestruj się" />
+</form>
+
+{% endblock %}
+{% block footer %}Moja pierwsza strona{% endblock %}

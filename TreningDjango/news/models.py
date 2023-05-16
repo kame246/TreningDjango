@@ -17,6 +17,14 @@ class Post(models.Model):
     category = models.CharField(choices=CATEGORIES, max_length=30)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        permissions = [
+            (
+                "can_be_shared",
+                "Post can be shared by clicking Share button"
+            )
+        ]
+
     def get_absolute_url(self):
         return reverse('news:detail', args=[self.id])
 

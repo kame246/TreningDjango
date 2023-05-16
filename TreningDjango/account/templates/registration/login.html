@@ -12,5 +12,12 @@
     <input type="submit" value="Zaloguj się" />
 </form>
 
+<p>Jeżeli nie posiasz konta, możesz się <a href="{% url 'register' %}">zarejestrować</a>.</p>
+
+{% if form.errors %}
+    <p>Nieprawidłowa nazwa użytkownika lub hasło.</p>
+    <p>Kliknij <a href="{% url 'password_reset' %}">tutaj</a>, aby zresetować hasło.</p>
+{% endif %}
+
 {% endblock %}
 {% block footer %}Moja pierwsza strona{% endblock %}

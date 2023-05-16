@@ -24,9 +24,10 @@ SECRET_KEY = 'django-insecure-m@ej)$m43*ten!p$19e##2b(08hh8025i!&k!0g79!-7(9(1#)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# Po wdrożeniu na serwer będzie trzeba ustawić DEBUG na False, aby nasze wewnętrzne szczegóły tj. nazwy plików nie były widoczne dla użytkowników podczas pokazywanie błędów na serwerze, w treści wyjątków itp.
 
 ALLOWED_HOSTS = []
-
+# Tylko requesty wysyłane na domeny zawarte w tej liście będą obsługiwane przez Django. Na jednej maszynie można mieć różne serwery
 
 # Application definition
 
@@ -85,6 +86,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3', # To dzięki temu powstał plik db.sqlite3
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django', # mysql> CREATE DATABASE django;
+    #     'USER': 'root',
+    #     'PASSWORD': 'izyda1'
+    # }
+    # Może być tylko jedna baza 'default' oraz zero lub więcej o innych nazwach
+    # W materiałach *.pdf znajdziecie informacje o tym jak odczytywać/zapisywać do/z konkrenej bazy
 }
 
 
@@ -141,3 +150,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'main:hello' # Przekieruj do tej strony po udanym zalogowaniu
 LOGIN_URL = 'login' # Niech Django weźmie te strone z account/urls.py, jeśli chce pokazać formularz logowania
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / 'email_base'

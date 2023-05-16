@@ -7,7 +7,7 @@
     <p>{{post.content|linebreaks}}</p>
     <p><a class="w3-button w3-teal" href="{% url 'news:list' %}">Wróć do listy postów</a></p>
     {% for comment in comments %}
-        <p>Komentarz dodany przez {{ comment.nick }} dn. {{ comment.created }}<br />
+        <p>{{ forloop.counter }}. Komentarz dodany przez {{ comment.nick }} dn. {{ comment.created }}<br />
             {{ comment.content|linebreaks }}
         </p>
     {% empty %}
